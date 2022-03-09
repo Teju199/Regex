@@ -5,20 +5,20 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class RegexPassword4 {
-    private static Pattern p = Pattern.compile("^(?=.*[0-9])\"\n" +
-            "                       + \"(?=.*[a-z])(?=.*[A-Z])\"\n" +
-            "                       + \"(?=.*[@#$%^&+=])\"\n" +
-            "                       + \"(?=\\S+$).{8,20}$");
+    private static Pattern p = Pattern.compile("(?=.*[0-9])(?=.*[A-Z])(?=.*[$%*@^&#])" +
+            "[A-Za-z0-9].{8,20}$");
 
-    public static boolean validatePassword(String password) {
+    public static boolean validatePassword(String password) throws RegexPasswordException {
         Matcher match = p.matcher(password);
         if (match.matches()) {
             return true;
         }
-        return false;
+        else{
+            throw new RegexPasswordException("Please enter valid password.");
+        }
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws RegexPasswordException {
         Scanner sc = new Scanner(System.in);
         System.out.println("Enter the password");
         String password = sc.next();

@@ -6,7 +6,7 @@ import java.util.regex.Pattern;
 
 public class RegexPassword3 {
 
-    private static Pattern p = Pattern.compile("(?=.*[A-Z])(?=.*[0-9])[A-Za-z0-9]{6}");
+    private static Pattern p = Pattern.compile("(?=.*[A-Z])(?=.*[0-9])[A-Za-z0-9]*$");
 
     public static boolean validatePassword(String password) {
         Matcher match = p.matcher(password);
